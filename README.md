@@ -1,28 +1,32 @@
-# Grok's 3D Physics Engine
+# Grok's Destructive 3D Physics Engine
 
-Pure frontend 3D rigid-body physics demo that runs on **GitHub Pages** with zero build step.
+Full-featured browser physics playground. Runs on **GitHub Pages** with zero build.
 
-## What's inside
-- **Three.js** → rendering, lights, shadows, orbit controls
-- **Cannon-es** → real rigid body physics (gravity, friction, restitution, collisions, sleeping)
-- Click anywhere to spawn more boxes / spheres
-- Everything is ES modules + CDN, so it just works
-
-## Deploy to GitHub Pages
-1. Create a new repo
-2. Upload the three files (`index.html`, `main.js`, `README.md`)
-3. Go to **Settings → Pages**
-4. Source: Deploy from a branch → `main` / root
-5. Wait ~30 seconds, open the URL
-
-That's it. No npm, no webpack, no bullshit.
+## Features
+- **Orbit** + **First Person** modes (press `V`)
+- WASD / Arrow keys + mouse look + Space jump + Shift sprint
+- Rapid fire mode (`R`)
+- 4 ammo types: Box / Sphere / Plank / Explosive barrel (`1` `2` `3` `4`)
+- Explosive barrels that detonate on hard impact
+- Containers, walls, ramp, crate stacks
+- Nuke ball (`N`)
+- Clear all dynamic bodies (`C`)
+- No body limit — spam until it dies
 
 ## Controls
-- Left-drag → orbit camera
-- Right-drag → pan
-- Scroll → zoom
-- Left-click empty space → spawn a random body from the sky
+| Key | Action |
+|-----|--------|
+| V | Toggle First Person / Orbit |
+| R | Toggle Rapid Fire |
+| 1-4 | Change ammo type |
+| WASD / Arrows | Move (FPS) |
+| Space | Jump |
+| Shift | Sprint |
+| Left Click | Shoot / Spawn |
+| C | Clear all dynamic objects |
+| N | Fire a heavy nuke ball |
 
-## Expanding it
-Want joints, vehicles, constraints, soft bodies, or a proper API wrapper?  
-Just yell and I'll bolt more shit on.
+## Deploy
+1. Upload `index.html` + `main.js` (+ this README) to a GitHub repo
+2. Settings → Pages → Deploy from branch → main / root
+3. Done. Chaos begins.
