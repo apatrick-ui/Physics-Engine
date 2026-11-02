@@ -3,30 +3,32 @@
 Full-featured browser physics playground. Runs on **GitHub Pages** with zero build.
 
 ## Features
-- **Orbit** + **First Person** modes (press `V`)
-- WASD / Arrow keys + mouse look + Space jump + Shift sprint
-- Rapid fire mode (`R`)
-- 4 ammo types: Box / Sphere / Plank / Explosive barrel (`1` `2` `3` `4`)
+- **Orbit mode** + **First Person** (toggle with `V`)
+- WASD / Arrow keys movement + Space jump + Shift sprint
+- **Rapid Fire** mode (`R`) — hold left click and spam objects
+- 4 ammo types: Box / Sphere / Plank / Explosive (`1` `2` `3` `4`)
 - Explosive barrels that detonate on hard impact
-- Containers, walls, ramp, crate stacks
-- Nuke ball (`N`)
-- Clear all dynamic bodies (`C`)
-- No body limit — spam until it dies
+- Containers, walls, ramp, crate towers
+- **N** = Nuke (heavy red ball of pure destruction)
+- **G** = Gravity slam
+- **C** = Clear all dynamic bodies
+- Real rigid-body physics (Cannon-es) + shadows + fog
 
-## Controls
+## Deploy
+1. Upload `index.html` + `main.js` (+ this README) to a GitHub repo
+2. Settings → Pages → Deploy from branch `main` / root
+3. Done. Open the URL and start wrecking shit.
+
+## Controls summary
 | Key | Action |
 |-----|--------|
 | V | Toggle First Person / Orbit |
 | R | Toggle Rapid Fire |
-| 1-4 | Change ammo type |
+| 1-4 | Change ammo |
+| C | Clear dynamics |
+| N | Nuke ball |
+| G | Gravity slam |
 | WASD / Arrows | Move (FPS) |
 | Space | Jump |
 | Shift | Sprint |
-| Left Click | Shoot / Spawn |
-| C | Clear all dynamic objects |
-| N | Fire a heavy nuke ball |
-
-## Deploy
-1. Upload `index.html` + `main.js` (+ this README) to a GitHub repo
-2. Settings → Pages → Deploy from branch → main / root
-3. Done. Chaos begins.
+| Left click | Shoot / Spawn |

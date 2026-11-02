@@ -6,74 +6,78 @@
   <title>Grok's Destructive 3D Physics Engine</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { overflow: hidden; background: #0a0a0f; font-family: system-ui, -apple-system, sans-serif; }
+    body { overflow: hidden; background: #05050c; font-family: system-ui, -apple-system, sans-serif; }
     canvas { display: block; }
     #ui {
       position: absolute;
-      top: 14px;
-      left: 14px;
-      color: #e0e0ff;
-      background: rgba(8, 8, 18, 0.82);
+      top: 12px;
+      left: 12px;
+      color: #e8e8ff;
+      background: rgba(6, 6, 16, 0.88);
       padding: 14px 18px;
       border-radius: 12px;
-      border: 1px solid rgba(100, 130, 255, 0.3);
-      backdrop-filter: blur(10px);
+      border: 1px solid rgba(90, 120, 255, 0.35);
+      backdrop-filter: blur(12px);
       pointer-events: none;
       user-select: none;
-      line-height: 1.5;
+      line-height: 1.55;
       font-size: 13.5px;
-      min-width: 210px;
+      min-width: 230px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.45);
     }
     #ui strong { color: #8af; }
-    #ui .mode { color: #ff9; font-weight: 600; }
-    #ui .on { color: #4f8; }
+    #ui .mode { color: #ffcc66; font-weight: 700; }
+    #ui .on { color: #4f8; font-weight: 600; }
     #ui .off { color: #f66; }
+    #ui .ammo { color: #aaf; }
     #hint {
       position: absolute;
-      bottom: 16px;
+      bottom: 14px;
       left: 50%;
       transform: translateX(-50%);
-      color: rgba(190, 205, 255, 0.75);
+      color: rgba(200, 215, 255, 0.8);
       font-size: 12.5px;
       pointer-events: none;
       text-align: center;
-      background: rgba(0,0,0,0.4);
-      padding: 8px 16px;
-      border-radius: 8px;
+      background: rgba(0,0,0,0.55);
+      padding: 9px 18px;
+      border-radius: 10px;
+      max-width: 90vw;
     }
     #crosshair {
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 18px;
-      height: 18px;
+      width: 22px;
+      height: 22px;
       transform: translate(-50%, -50%);
       pointer-events: none;
       display: none;
+      z-index: 5;
     }
     #crosshair::before, #crosshair::after {
       content: '';
       position: absolute;
-      background: rgba(255,255,255,0.85);
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 0 4px #000;
     }
-    #crosshair::before {
-      width: 2px; height: 18px; left: 8px; top: 0;
-    }
-    #crosshair::after {
-      width: 18px; height: 2px; left: 0; top: 8px;
-    }
+    #crosshair::before { width: 2px; height: 22px; left: 10px; top: 0; }
+    #crosshair::after { width: 22px; height: 2px; left: 0; top: 10px; }
     #blocker {
       position: absolute;
       inset: 0;
-      background: rgba(5,5,15,0.75);
+      background: rgba(4, 4, 12, 0.82);
       display: none;
       align-items: center;
       justify-content: center;
+      flex-direction: column;
       color: #eee;
-      font-size: 18px;
-      z-index: 10;
+      font-size: 20px;
+      z-index: 20;
       cursor: pointer;
+      gap: 12px;
     }
+    #blocker span { font-size: 14px; opacity: 0.7; }
   </style>
 </head>
 <body>
@@ -81,18 +85,24 @@
     <div><strong>Bodies:</strong> <span id="count">0</span></div>
     <div>Mode: <span id="mode" class="mode">ORBIT</span></div>
     <div>Rapid Fire: <span id="rapid" class="off">OFF</span></div>
-    <div style="margin-top:10px;font-size:12px;opacity:0.85;line-height:1.55">
+    <div>Ammo: <span id="ammo" class="ammo">BOX</span></div>
+    <div style="margin-top:12px;font-size:12px;opacity:0.9;line-height:1.6">
       <div><strong>V</strong> — Toggle First Person</div>
-      <div><strong>R</strong> — Toggle Rapid Fire</div>
-      <div><strong>1-4</strong> — Change ammo</div>
-      <div><strong>C</strong> — Clear all dynamic</div>
-      <div><strong>N</strong> — Nuke (big heavy ball)</div>
-      <div style="margin-top:6px">WASD / Arrows + Space / Shift</div>
+      <div><strong>R</strong> — Rapid Fire</div>
+      <div><strong>1 2 3 4</strong> — Ammo type</div>
+      <div><strong>C</strong> — Clear dynamics</div>
+      <div><strong>N</strong> — Nuke ball</div>
+      <div><strong>G</strong> — Gravity slam</div>
+      <div style="margin-top:7px">WASD / Arrows · Space jump · Shift sprint</div>
+      <div>Left click = shoot / spawn</div>
     </div>
   </div>
-  <div id="hint">Click to lock mouse in FPS · Left click = shoot · Hold in rapid fire</div>
+  <div id="hint">Orbit: drag to look · FPS: click to lock mouse, then destroy everything</div>
   <div id="crosshair"></div>
-  <div id="blocker">CLICK TO ENTER FIRST PERSON</div>
+  <div id="blocker">
+    CLICK TO ENTER FIRST PERSON
+    <span>WASD + mouse · R for rapid fire · 1-4 ammo</span>
+  </div>
 
   <script type="importmap">
   {
