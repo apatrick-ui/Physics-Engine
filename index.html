@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grok's 3D Physics Engine</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { overflow: hidden; background: #0a0a0f; font-family: system-ui, -apple-system, sans-serif; }
+    canvas { display: block; }
+    #ui {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      color: #e0e0ff;
+      background: rgba(10, 10, 20, 0.75);
+      padding: 14px 18px;
+      border-radius: 10px;
+      border: 1px solid rgba(120, 140, 255, 0.25);
+      backdrop-filter: blur(8px);
+      pointer-events: none;
+      user-select: none;
+      line-height: 1.45;
+      font-size: 14px;
+    }
+    #ui strong { color: #8af; }
+    #hint {
+      position: absolute;
+      bottom: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(200, 210, 255, 0.7);
+      font-size: 13px;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="ui">
+    <div><strong>Bodies:</strong> <span id="count">0</span></div>
+    <div style="margin-top:6px;font-size:12px;opacity:0.8">Click anywhere to spawn more shit</div>
+  </div>
+  <div id="hint">Left-drag = orbit · Right-drag = pan · Scroll = zoom</div>
+
+  <!-- Three.js + Cannon-es via CDN (works on GitHub Pages) -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/",
+      "cannon-es": "https://unpkg.com/cannon-es@0.20.0/dist/cannon-es.js"
+    }
+  }
+  </script>
+
+  <script type="module" src="./main.js"></script>
+</body>
+</html>
